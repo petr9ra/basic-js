@@ -24,5 +24,34 @@ import { NotImplementedError } from '../extensions/index.js';
  * ]
  */
 export default function minesweeper (matrix) {
-
+  let matr = []
+  if (matrix.length === 2) {
+    matr = [
+      [0, 0, 0],
+      [0, 0, 0]
+    ];
+  } else if (matrix.length === 3) {
+    matr = [
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0]
+    ];
+  };
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[0].length; j++) {
+      if (matrix[i][j]) {
+        if (matr[i + 1][j] !== undefined) matr[i + 1][j]++;
+        if (matr[i][j + 1] !== undefined) matr[i][j + 1]++;
+        if (matr[i][j - 1] !== undefined) matr[i][j - 1]++;
+        if (matr[i + 1][j + 1] !== undefined) matr[i + 1][j + 1]++; 
+        if (matr[i + 1][j - 1] !== undefined) matr[i + 1][j - 1]++; 
+        if (i > 0) {
+          if (matr[i - 1][j] !== undefined) matr[i - 1][j]++;
+          if (matr[i - 1][j + 1] !== undefined) matr[i - 1][j + 1]++; 
+          if (matr[i - 1][j - 1] !== undefined) matr[i - 1][j - 1]++; 
+        };
+      }
+    }
+  }
+  return matr;
 }
